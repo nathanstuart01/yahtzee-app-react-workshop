@@ -1,48 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Player from './Player';
-import Game from './Game';
+import { Switch, Route } from 'react-router-dom';
+import Yahtzee from './Yahtzee';
+import NavBar from './NavBar';
+import NoMatch from './NoMatch';
+import About from './About';
+import Rules from './Rules';
+import Scores from './Scores';
+import ProtectedRoute from './ProtectedRoute';
+import Login from './Login';
 
-class App extends Component {
-state = { name: '', edit: true };
-
-toggleEdit = () => {
-  this.setState( (state) => {
-    return { edit: !state.edit };
-  });
-}
-
-submitName = (e) => {
-  // this is where we could do a network request to update the database(ajax call)
-  e.preventDefault();
-  this.toggleEdit();
-}
-
-changeName = (e) => {
-  // this is for our controlled component so it sets state nad passes it down
-  this.setState({ name: e.target.value });
-}
-
-    render() {
-      // let { name, edit } = this.state;
-      // let { changeName, submitName, toggleEdit } = this;
-
-      let { state: {name, edit }, changeName, submitName, toggleEdit } = this;
-
-    return (
-      <div>
-        { edit ?
-        <Player
-            name={ name }
-            handleChange={ changeName }
-            handleSubmit={ submitName }
-          /> :
-          <Game player={ name } toggleEdit={ toggleEdit} />
-          }
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div>
+    <NavBar />
+    <Switch>
+      <ProtectedRoute exact path="/" component={Yahtzee} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/about" component={About} />
+      <Route exact path="/rules" component={Rules} />
+      <Route exact path="/scores" component={Scores} />
+      <Route component={NoMatch} />
+    </Switch>
+  </div>
+)
 
 export default App;

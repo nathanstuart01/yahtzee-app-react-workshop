@@ -13,20 +13,19 @@ const styles = {
     width: '100%',
     cursor: 'pointer',
   },
-
-  selected: {
-    borderBottom: 'solid 2px blue',
-  },
+  kept: {
+    borderBottom: 'solid 2px blue'
+  }
 }
 
 const Dice = ({ value, index, kept, toggleKept }) => (
-  <div className='col s12 m2'>
+  <div className="col s12 m2">
     <img
-      style={kept ? {...styles.dice, ...styles.selected} : styles.dice }
+      style={kept ? {...styles.dice, ...styles.kept} : styles.dice}
       src={images[`d${value}`]}
-      onClick={ () => toggleKept(index) }
+      onClick={() => toggleKept(index)}
     />
- </div>
-);
+  </div>
+)
 
 export default Dice;
