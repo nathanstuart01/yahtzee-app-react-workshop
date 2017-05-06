@@ -8,16 +8,18 @@ import Rules from './Rules';
 import Scores from './Scores';
 import ProtectedRoute from './ProtectedRoute';
 import Login from './Login';
+import Register from './Register';
 
 const App = () => (
   <div>
     <NavBar />
     <Switch>
       <ProtectedRoute exact path="/" component={Yahtzee} />
+      <ProtectedRoute exact path="/scores" component={Scores} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/register" component={Register} />
       <Route exact path="/about" component={About} />
       <Route exact path="/rules" component={Rules} />
-      <Route exact path="/scores" component={Scores} />
       <Route component={NoMatch} />
     </Switch>
   </div>

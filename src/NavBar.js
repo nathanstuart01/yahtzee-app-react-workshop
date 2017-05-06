@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
-import { fakeAuth, logout } from './Auth';
+import { authenticatedUser, logout } from './Auth';
 
 const authLinks = (history) => {
-  if (fakeAuth()) {
+  if (Object.keys(authenticatedUser()).length) {
     return (
       <li>
         <a
